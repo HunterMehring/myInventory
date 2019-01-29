@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments :: head"></head>
+
+<body class="container">
+<h1 th:text="${title} + ': Current Items'">Default Title</h1>
+<nav th:replace="fragments :: navigation"></nav>
+
+<a th:href="'/players/add-remove-item/' + ${player.id}">Add Items</a>
+
+<table class="table">
+
+    <tr>
+        <th>Item</th>
+        <th>Number</th>
+        <th>Size</th>
+        <th>Comments</th>
+        <th>Edit</th>
+        <th>Remove</th>
+    </tr>
+
+    <tr th:each="item : ${items}">
+        <td th:text="${item.category.name}"></td>
+        <td th:text="${item.number}"></td>
+        <td th:text="${item.size}"></td>
+        <td th:text="${item.other}"></td>
+        <td><a th:href="@{'/item/edit/' + ${item.id}}">edit</a></td>
+        <td><a th:href="@{'/players/remove-item-from-player/' + *{player.id} + '/' + ${item.id}}">Remove</a></td>
+    </tr>
+
+</table>
+
+<p th:unless="${items.size()}"><i>No items yet</i></p>
+
+</body>
+</html>

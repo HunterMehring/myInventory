@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments :: head"></head>
+
+<body class="container body-content">
+
+<h1 th:text="${title}">Default Title</h1>
+
+<nav th:replace="fragments :: navigation"></nav>
+<!--removing the task will remove the task from all players-->
+<br />
+<h4>completed task</h4>
+<table class="table">
+    <tr>
+        <th>Player</th>
+        <th>Remove Complete</th>
+    </tr>
+    <tr th:each="player : ${completedPlayers}">
+        <td th:text="${player.name}"></td>
+        <td><a th:href="@{'/tasks/remove-task-player/' + ${player.id} + '/' + ${task.id}}">remove complete</a></td>
+    </tr>
+</table>
+
+<h4>not done yet</h4>
+<table class="table">
+    <tr>
+        <th>Player</th>
+        <th>Add Complete</th>
+    </tr>
+    <tr th:each="player : ${incompletePlayers}">
+        <td th:text="${player.name}"></td>
+        <td><a th:href="@{'/tasks/add-task-player/' + ${player.id} + '/' + ${task.id}}">complete</a></td> <!--make this work next-->
+    </tr>
+</table>
+
+</body>
+</html>

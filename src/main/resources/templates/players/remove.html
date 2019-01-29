@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments :: head"></head>
+<body class="container">
+
+<h1 th:text="${title}">Default Title</h1>
+
+<nav th:replace="fragments :: navigation"></nav>
+<div style="color: red;">
+<p>Note: items will be moved back to inventory if the player is not safe to remove</p>
+</div>
+<table class="table">
+    <tr>
+        <th>Name</th>
+        <th>Number</th>
+        <th>Grade</th>
+        <th>Safe to Remove</th>
+        <th>Remove</th>
+    </tr>
+    <tr th:each="player : ${players}">
+        <td th:text="${player.name}"></td>
+        <td th:text="${player.number}"></td>
+        <td th:text="${player.grade}"></td>
+        <td th:text="${player.safe}"></td>
+        <td><a th:href="@{'/players/remove-player/' + ${player.id}}">Remove</a></td>
+
+    </tr>
+</table>
+
+</body>
+</html>

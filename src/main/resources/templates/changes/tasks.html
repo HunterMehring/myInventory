@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments :: head"></head>
+
+<body class="container body-content">
+
+<h1 th:text="${title}">Default Title</h1>
+
+<nav th:replace="fragments :: navigation"></nav>
+
+<br />
+
+<nav th:fragment="navigation">
+    <a href="/changes/">all</a> |
+    <a href="/changes/categories">category</a> |
+    <a href="/changes/items">inventory</a> |
+    <a href="/changes/player-items">player item</a> |
+    <a href="/changes/players">player</a> |
+    <a href="/changes/tasks">tasks</a>
+</nav>
+
+<table class="table">
+    <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Item</th>
+        <th>Status</th>
+        <th>Date</th>
+    </tr>
+    <tr th:each="change : ${changes}">
+        <td th:text="${change.type}"></td>
+        <td th:text="${change.name}"></td>
+        <td th:text="${change.item}"></td>
+        <td th:text="${change.status}"></td>
+        <td th:text="${change.myDate}"></td>
+    </tr>
+
+</table>
+
+</body>
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments :: head"></head>
+<body class="container">
+
+<h1 th:text="${title}">Default Title</h1>
+
+<nav th:replace="fragments :: navigation"></nav>
+ <!--the reason why im adding this instead of putting it on the main page is to make sure the user doesn't accidentally
+ delete a category-->
+<div style="color: red;">
+<p>Note: removing a category will also remove all items of that category from the inventory</p>
+</div>
+<table class="table">
+    <tr>
+        <th>Category</th>
+        <th>Remove</th>
+    </tr>
+    <tr th:each="category : ${categories}">
+        <td th:text="${category.name}"></td>
+        <td><a th:href="@{'/category/remove-category/' + ${category.id}}">Remove</a></td>
+    </tr>
+</table>
+
+</body>
+</html>

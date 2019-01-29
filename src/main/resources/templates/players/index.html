@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments :: head"></head>
+<body class="container">
+<h1 th:text="${title}">Default Title</h1>
+
+<nav th:replace="fragments :: navigation"></nav>
+
+<a th:href="@{/players/add/}">add player</a> |
+<a th:href="@{/players/remove/}">remove player</a> |
+<!-- This loops over the menus, and for each one gives a link to that menu view.
+  the url is showing us the view with the menu id ex: menu/view/5-->
+
+
+<table class="table">
+    <tr>
+        <th>Player</th>
+        <th>Number</th>
+        <th>Grade</th>
+        <th>Add/Remove Item</th>
+    </tr>
+    <tr th:each="player: ${players}">
+        <td><a th:href="@{'/players/view/' + ${player.id}}" th:text="${player.name}"></a></td>
+        <td th:text="${player.number}"></td>
+        <td th:text="${player.grade}"></td>
+        <td><a th:href="@{'/players/add-remove-item/' + ${player.id}}">Add/Remove Item</a></td>
+        <!--ask chris if he wants to be able to see items on this page -->
+    </tr>
+</table>
+
+</body>
+</html>
