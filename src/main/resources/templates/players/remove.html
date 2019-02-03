@@ -6,9 +6,9 @@
 <h1 th:text="${title}">Default Title</h1>
 
 <nav th:replace="fragments :: navigation"></nav>
-<div style="color: red;">
-<p>Note: items will be moved back to inventory if the player is not safe to remove</p>
-</div>
+
+<p id="warning">Note: items will be moved back to inventory if the player is not safe to remove</p>
+
 <table class="table">
     <tr>
         <th>Name</th>

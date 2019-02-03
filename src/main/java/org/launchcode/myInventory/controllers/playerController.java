@@ -83,7 +83,6 @@ public class playerController {
     //NEED to be able to sort by size after category
     @RequestMapping(value = "add-remove-item/{playerId}")
     public String addPlayerItem(Model model, @PathVariable int playerId) {
-
         Player player = playerDao.findOne(playerId);
         Iterable<Item> items = itemDao.findAll();
         ArrayList<Item> itemsIn = new ArrayList<>();
@@ -174,4 +173,6 @@ public class playerController {
     }
 
     //just make links that help navigate places
+
+    // add a player edit to help it redirect to the better place
 }

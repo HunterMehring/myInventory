@@ -8,8 +8,8 @@
 
 <nav th:replace="fragments :: navigation"></nav>
 
-<a href="/item/add">add item</a> |
-<a href="/category/add">add category</a>
+<a class="btn btn-secondary" href="/item/add">add item</a> 
+<a class="btn btn-secondary" href="/category/add">add category</a>
 
 <h4>In Stock</h4>
 <table class="table">
@@ -23,7 +23,9 @@
     </tr>
     <tr th:each="item : ${inItems}">
         <td th:text="${item.category.name}"></td>
-        <td th:text="${item.number}"></td>
+        <td>
+            <span th:if="${item.number != 0}" th:text="${item.number}"> </span>
+        </td>
         <td th:text="${item.size}"></td>
         <td th:text="${item.other}"></td>
         <td><a th:href="@{'/item/edit/' + ${item.id}}">edit</a></td>
@@ -43,7 +45,9 @@
     </tr>
     <tr th:each="item : ${outItems}">
         <td th:text="${item.category.name}"></td>
-        <td th:text="${item.number}"></td>
+        <td>
+            <span th:if="${item.number != 0}" th:text="${item.number}"> </span>
+        </td>
         <td th:text="${item.size}"></td>
         <td th:text="${item.other}"></td>
         <td><a th:href="@{'/item/edit/' + ${item.id}}">edit</a></td>

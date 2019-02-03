@@ -22,7 +22,7 @@ public class Player implements Comparable<Player> {
 
     @NotNull
     @Size(min = 1, message = "each player must have a number")
-    private String number;
+    private Integer number;
 
     @NotNull
     @Size(min = 1, message = "each player must have a grade")
@@ -44,7 +44,7 @@ public class Player implements Comparable<Player> {
 
     public Player(){}
 
-    public Player(String name, String number, String grade) {
+    public Player(String name, Integer number, String grade) {
         this.name = name;
         this.number = number;
     }
@@ -81,11 +81,11 @@ public class Player implements Comparable<Player> {
         return items;
     }
 
-    public String getNumber() {
+    public Integer getNumber() {
         return number;
     }
 
-    public void setNumber(String number) {
+    public void setNumber(Integer number) {
         this.number = number;
     }
 

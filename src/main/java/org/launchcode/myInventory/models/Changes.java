@@ -22,7 +22,7 @@ public class Changes {
 
     private String status;
 
-    private String number;
+    private Integer number;
 
     private Date myDate;
 
@@ -41,7 +41,7 @@ public class Changes {
         this.myDate = new Date();
     }
 
-    public Changes(String type, String item, String status, String number) {
+    public Changes(String type, String item, String status, Integer number) {
         this.type = type;
         this.item = item;
         this.status = status;
@@ -49,7 +49,7 @@ public class Changes {
         this.myDate = new Date();
     }
 
-    public Changes(String type, String name, String item, String status, String number) {
+    public Changes(String type, String name, String item, String status, Integer number) {
         this.type = type;
         this.name = name;
         this.item = item;
@@ -94,11 +94,11 @@ public class Changes {
         this.status = status;
     }
 
-    public String getNumber() {
+    public Integer getNumber() {
         return number;
     }
 
-    public void setNumber(String number) {
+    public void setNumber(Integer number) {
         this.number = number;
     }
 

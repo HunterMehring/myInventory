@@ -8,34 +8,28 @@
 
 <nav th:replace="fragments :: navigation"></nav>
 
-<br />
+<h3 th:text="${item.category.name} + ' number: ' + ${item.number}"></h3>
 
-<nav th:fragment="navigation">
-    <a class="btn btn-secondary" href="/changes/">all</a> |
-    <a class="btn btn-secondary" href="/changes/categories">category</a> |
-    <a class="btn btn-secondary" href="/changes/items">inventory</a> |
-    <a class="btn btn-secondary" href="/changes/player-items">player item</a> |
-    <a class="btn btn-secondary" href="/changes/players">player</a> |
-    <a class="btn btn-secondary" href="/changes/tasks">tasks</a>
-</nav>
+<h3 th:if="${player != null}" th:text="'Owner: ' + ${player.name}"></h3>
+<h3 th:if="${player == null}">In Stock</h3>
+<br/>
 
+<h4>Changes</h4>
 <table class="table">
     <tr>
+        <th>Item</th>
         <th>Name</th>
         <th>Number</th>
         <th>Status</th>
         <th>Date</th>
     </tr>
     <tr th:each="change : ${changes}">
+        <td th:text="${change.item}"></td>
         <td th:text="${change.name}"></td>
-        <td>
-            <span th:if="${change.number != 0}" th:text="${change.number}"> </span>
-        </td>
+        <td th:text="${change.number}"></td>
         <td th:text="${change.status}"></td>
         <td th:text="${change.myDate}"></td>
     </tr>
-
 </table>
-
 </body>
 </html>

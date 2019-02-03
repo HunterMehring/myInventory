@@ -61,6 +61,7 @@ public class itemController {
         return "item/index";
     }
 
+    //make a dropdown of enums
     @RequestMapping(value = "add")
     public String displayAdditem(Model model) {
         model.addAttribute("title", "Add Item");

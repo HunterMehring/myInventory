@@ -1,0 +1,25 @@
+body{
+  background-image: url("");
+  background-color: #cccccc;
+}
+nav {
+    text-align:center;
+    font-size:24px;
+}
+
+h1 {
+text-align: center;
+}
+
+nav {
+    margin: 30px;
+}
+
+#searchError {
+color:red;
+}
+
+#warning {
+color:red;
+}
+

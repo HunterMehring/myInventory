@@ -1,6 +1,7 @@
 package org.launchcode.myInventory.models;
 
 import javax.persistence.*;
+import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.List;
@@ -19,12 +20,11 @@ public class Item implements Comparable<Item>{
     @ManyToMany(mappedBy = "items")
     private List<Player> players;
 
-    //make number an int so you can sort by number
+    //sort by number
     @NotNull
-    private String number;
+    private Integer number;
 
     @NotNull
-    @Size(min = 1, message = "item must have a size")
     private String size;
 
     @NotNull
@@ -33,7 +33,7 @@ public class Item implements Comparable<Item>{
     @NotNull
     private boolean inInventory = true;
 
-    public Item(Category category, String number, String size, String other) {
+    public Item(Category category, Integer number, String size, String other) {
         this.category = category;
         this.number = number;// make a dropdown of all available numbers after selected category
         this.size = size;
@@ -58,11 +58,11 @@ public class Item implements Comparable<Item>{
         this.category = category;
     }
 
-    public String getNumber() {
+    public Integer getNumber() {
         return number;
     }
 
-    public void setNumber(String number) {
+    public void setNumber(Integer number) {
         this.number = number;
     }
 
@@ -87,6 +87,14 @@ public class Item implements Comparable<Item>{
     }
     public void setisInventory(boolean in) {
         this.inInventory = in;
+    }
+
+    public List<Player> getPlayers() {
+        return players;
+    }
+
+    public void setPlayers(List<Player> players) {
+        this.players = players;
     }
 
     @Override

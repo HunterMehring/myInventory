@@ -7,14 +7,17 @@
 <h1 th:text="${title}">Default Title</h1>
 
 <nav th:replace="fragments :: navigation"></nav>
-<a href="/category/add">add Category</a> |
-<a href="/category/remove">remove Category</a>
+<br />
+<a class="btn btn-secondary" href="/category/add">add Category</a> <!-- add margin-->
+<a class="btn btn-secondary" href="/category/remove">remove Category</a>
 
+<br />
+<br />
+<!-- make this a good looking list -->
 <table class="table">
     <tr th:each="category : ${categories}">
         <td th:text="${category.name}"></td>
     </tr>
-
 </table>
 
 </body>

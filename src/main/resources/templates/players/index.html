@@ -6,8 +6,8 @@
 
 <nav th:replace="fragments :: navigation"></nav>
 
-<a th:href="@{/players/add/}">add player</a> |
-<a th:href="@{/players/remove/}">remove player</a> |
+<a class="btn btn-secondary" th:href="@{/players/add/}">add player</a>
+<a class="btn btn-secondary" th:href="@{/players/remove/}">remove player</a>
 <!-- This loops over the menus, and for each one gives a link to that menu view.
   the url is showing us the view with the menu id ex: menu/view/5-->
 
