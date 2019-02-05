@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org/">
 <head th:replace="fragments :: head"></head>
 <body class="container">
-<h1>Add item to player: <a th:href="@{'/players/view/' + ${form.player.id}}" th:text="${form.player.name}">Default Title</a></h1>
+<h1>give item to player: <a th:href="@{'/players/view/' + ${form.player.id}}" th:text="${form.player.name}">Default Title</a></h1>
 <nav th:replace="fragments :: navigation"></nav>
 
 <h4>Items available</h4>
@@ -12,14 +12,14 @@
             <th>Number</th>
             <th>Size</th>
             <th>Comments</th>
-            <th>Add    </th>
+            <th>Give Item</th>
         </tr>
         <tr th:each="item : *{items}">
             <td th:text="${item.category.name}"></td>
             <td th:text="${item.number}"></td>
             <td th:text="${item.size}"></td>
             <td th:text="${item.other}"></td>
-            <td><a th:href="@{'/players/add-item-to-player/' + *{player.id} + '/' + ${item.id}}">Add</a></td>
+            <td><a class="btn btn-secondary" th:href="@{'/players/add-item-to-player/' + *{player.id} + '/' + ${item.id}}">give item</a></td>
         </tr>
     </table>
 
@@ -33,14 +33,14 @@
         <th>Number</th>
         <th>Size</th>
         <th>Comments</th>
-        <th>Remove</th>
+        <th>Take Back Item</th>
     </tr>
     <tr th:each="item : ${hasItems}">
         <td th:text="${item.category.name}"></td>
         <td th:text="${item.number}"></td>
         <td th:text="${item.size}"></td>
         <td th:text="${item.other}"></td>
-        <td><a th:href="@{'/players/remove-item-from-player/' + ${form.player.id} + '/' + ${item.id}}">Remove</a></td>
+        <td><a class="btn btn-secondary" th:href="@{'/players/remove-item-from-player/' + ${form.player.id} + '/' + ${item.id}}">take back item</a></td>
     </tr>
 </table>
 

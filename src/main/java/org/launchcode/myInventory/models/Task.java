@@ -5,8 +5,6 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.List;
 
-// make this items category then make a task category...
-//why doesnt it like things that are only 3 letters long
 @Entity//makes sure that this class will be mapped to a relational database table(persistent)
 public class Task {
 
@@ -15,7 +13,6 @@ public class Task {
     private int id;
 
     @NotNull
-    //@Column(unique = true) why not working?
     @Size(min = 3, max = 15)
     private String name;
 

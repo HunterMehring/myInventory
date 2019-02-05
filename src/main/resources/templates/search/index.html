@@ -6,8 +6,6 @@
 
 <nav th:replace="fragments :: navigation"></nav>
 
-<p id="searchError" th:text="${error}"></p>
-
 <form method="post" style="max-width:600px;" th:object="${item}">
     <div class="form-group">
         <label th:for="category">Category</label>
@@ -22,11 +20,8 @@
         <input class="form-control" th:field="*{number}" />
         <span th:errors="*{number}" class="error"></span>
     </div>
-    <div class="form-group">
-        <label th:for="item">Size</label>
-        <input class="form-control" th:field="*{size}" />
-        <span th:errors="*{size}" class="error"></span>
-    </div>
+    <input type="hidden" class="form-control" th:field="*{size}" />
+    <p id="error" th:text="${error}"></p>
     <input type="submit" value="Search Item" />
 </form>
 

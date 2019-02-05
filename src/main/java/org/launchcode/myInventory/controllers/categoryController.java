@@ -3,6 +3,7 @@ package org.launchcode.myInventory.controllers;
 import org.launchcode.myInventory.models.Category;
 import org.launchcode.myInventory.models.Changes;
 import org.launchcode.myInventory.models.Item;
+import org.launchcode.myInventory.models.Player;
 import org.launchcode.myInventory.models.data.CategoryDao;
 import org.launchcode.myInventory.models.data.ChangeDao;
 import org.launchcode.myInventory.models.data.ItemDao;
@@ -14,7 +15,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import java.lang.Object;
 
 import javax.validation.Valid;
 
@@ -56,8 +56,10 @@ public class categoryController {
 
             return "/category/add";
         }
+
+        String categoryName = category.getName().toLowerCase();
         for (Category aCategory : categoryDao.findAll()) {
-            if (aCategory.getName().equals(category.getName())) {
+            if (aCategory.getName().equals(categoryName)) {
                 model.addAttribute("category", category);
                 model.addAttribute("title", "Add Category");
                 model.addAttribute("other", "you already have that category");
@@ -66,14 +68,13 @@ public class categoryController {
             }
         }
 
-        String categoryName = Character.toUpperCase(category.getName().charAt(0)) + category.getName().substring(1);
         category.setName(categoryName);
         categoryDao.save(category);
         Changes newChange = new Changes("category", category.getName(), "added");
         newChange.setMyDate(newChange.getMyDate()); // might not be necessary
         //to be able to make longer strings
         changeDao.save(newChange);
-        return "redirect:/category/";
+        return "redirect:/item/";
     }
     //so the user doesn't accidentally remove a category (adds an extra click)
     @RequestMapping(value = "remove")
@@ -87,6 +88,9 @@ public class categoryController {
     @RequestMapping(value = "remove-category/{categoryId}")
     public String removeCategory(@PathVariable int categoryId) {
         for (Item item : itemDao.findAll()) {
+            for (Player player : item.getPlayers()){
+                player.removeItem(item);
+            }
             if(item.getCategory().getId() == categoryId){
                 itemDao.delete(item);
             }

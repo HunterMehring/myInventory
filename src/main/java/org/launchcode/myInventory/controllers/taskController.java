@@ -55,6 +55,7 @@ public class taskController {
         if (errors.hasErrors()) {
             model.addAttribute("title", "Tasks");
             model.addAttribute("task", task);
+            return "tasks/add";
         }
         taskDao.save(task);
        Changes newChange = new Changes("task", task.getName(),

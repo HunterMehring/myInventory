@@ -7,7 +7,7 @@
 <h1 th:text="${title}">Default Title</h1>
 
 <nav th:replace="fragments :: navigation"></nav>
-<a class="btn btn-secondary" href="/tasks/add">add task</a>
+<a class="btn btn-secondary otherNav" href="/tasks/add">add task</a>
 
 <table class="table">
     <tr>
@@ -16,7 +16,7 @@
     </tr>
     <tr th:each="task : ${tasks}">
         <td><a th:href="@{'/tasks/add-remove-players/' + ${task.id}}" th:text="${task.name}"></a></td>
-        <td><a th:href="@{'/tasks/remove/' + ${task.id}}">remove task</a></td>
+        <td><a class="btn btn-secondary" th:href="@{'/tasks/remove/' + ${task.id}}">remove task</a></td>
     </tr>
 
 </table>

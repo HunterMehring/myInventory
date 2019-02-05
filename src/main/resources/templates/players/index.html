@@ -6,8 +6,10 @@
 
 <nav th:replace="fragments :: navigation"></nav>
 
-<a class="btn btn-secondary" th:href="@{/players/add/}">add player</a>
-<a class="btn btn-secondary" th:href="@{/players/remove/}">remove player</a>
+<div id="otherNav">
+<a class="btn btn-secondary otherNav" th:href="@{/players/add/}">add player</a>
+<a class="btn btn-secondary otherNav" th:href="@{/players/remove/}">remove player</a>
+</div>
 <!-- This loops over the menus, and for each one gives a link to that menu view.
   the url is showing us the view with the menu id ex: menu/view/5-->
 
@@ -17,13 +19,13 @@
         <th>Player</th>
         <th>Number</th>
         <th>Grade</th>
-        <th>Add/Remove Item</th>
+        <th>add/remove items</th>
     </tr>
     <tr th:each="player: ${players}">
         <td><a th:href="@{'/players/view/' + ${player.id}}" th:text="${player.name}"></a></td>
         <td th:text="${player.number}"></td>
         <td th:text="${player.grade}"></td>
-        <td><a th:href="@{'/players/add-remove-item/' + ${player.id}}">Add/Remove Item</a></td>
+        <td><a class="btn btn-secondary" th:href="@{'/players/add-remove-item/' + ${player.id}}">add/remove items</a></td>
         <!--ask chris if he wants to be able to see items on this page -->
     </tr>
 </table>

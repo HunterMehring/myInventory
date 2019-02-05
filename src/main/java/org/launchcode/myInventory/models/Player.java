@@ -16,26 +16,19 @@ public class Player implements Comparable<Player> {
     @GeneratedValue//says that a value should be generated for us.
     private int id;
 
-    @NotNull
-    @Size(min = 3, max=15)
+    @NotNull(message = "player must have a name")
+    @Size(min = 3, max=15, message = "player must be between 3 and 15 characters")
     private String name;
 
-    @NotNull
-    @Size(min = 1, message = "each player must have a number")
+    @NotNull(message = "player must have a number")
     private Integer number;
 
-    @NotNull
-    @Size(min = 1, message = "each player must have a grade")
     private String grade;
 
     @NotNull
     private String safe;
 
     //this list of items will be populated based on the relationships we set up with our controllers
-    //there will be many cheeses associated with many menus
-    //This is going to be populated with a list of cheeses that are present for each Player
-    //Hibernate figures out the relationship between cheeses and
-    // menus
     @ManyToMany
     private List<Item> items = new ArrayList<>();
 

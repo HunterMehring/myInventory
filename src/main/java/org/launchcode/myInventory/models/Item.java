@@ -35,9 +35,9 @@ public class Item implements Comparable<Item>{
 
     public Item(Category category, Integer number, String size, String other) {
         this.category = category;
-        this.number = number;// make a dropdown of all available numbers after selected category
+        this.number = number;
         this.size = size;
-        this.other = other;// make size after category, then have the dropdown for available numbers in that size.
+        this.other = other;
     }
 
     public Item(){}
@@ -92,6 +92,8 @@ public class Item implements Comparable<Item>{
     public List<Player> getPlayers() {
         return players;
     }
+
+    //make a function to remove players
 
     public void setPlayers(List<Player> players) {
         this.players = players;

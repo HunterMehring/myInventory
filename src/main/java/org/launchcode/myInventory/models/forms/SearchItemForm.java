@@ -11,7 +11,6 @@ public class SearchItemForm {
     @GeneratedValue
     private int id;
 
-    //make number an int so you can sort by number
     @NotNull
     private Integer number;
 

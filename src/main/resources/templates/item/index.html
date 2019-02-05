@@ -8,10 +8,11 @@
 
 <nav th:replace="fragments :: navigation"></nav>
 
-<a class="btn btn-secondary" href="/item/add">add item</a> 
-<a class="btn btn-secondary" href="/category/add">add category</a>
+<a class="btn btn-secondary otherNav" href="/item/add">add item</a>
+<a class="btn btn-secondary otherNav" href="/category/add">add category</a>
+<a  class="btn btn-secondary otherNav" href="/category/remove">remove Category</a>
 
-<h4>In Stock</h4>
+<h4>In Storage</h4>
 <table class="table">
     <tr>
         <th>Category</th>
@@ -28,13 +29,13 @@
         </td>
         <td th:text="${item.size}"></td>
         <td th:text="${item.other}"></td>
-        <td><a th:href="@{'/item/edit/' + ${item.id}}">edit</a></td>
-        <td><a th:href="@{'/item/remove-item/' + ${item.id}}">remove</a></td>
+        <td><a class="btn btn-secondary" th:href="@{'/item/edit/' + ${item.id}}">edit</a></td>
+        <td><a class="btn btn-secondary" th:href="@{'/item/remove-item/' + ${item.id}}">remove</a></td>
     </tr>
 
 </table>
 
-<h4>Out Of Stock</h4>
+<h4>Out Of Storage</h4>
 <table class="table">
     <tr>
         <th>Category</th>

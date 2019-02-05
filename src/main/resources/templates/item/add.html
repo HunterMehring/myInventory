@@ -17,20 +17,22 @@
     </div>
     <div class="form-group">
         <label th:for="item">Number</label>
-        <input pattern="\d{0,3}" class="form-control" th:field="*{number}" />
+        <input required="required" pattern="\d{0,3}" class="form-control" th:field="*{number}" />
         <span th:errors="*{number}" class="error"></span>
     </div>
     <div class="form-group">
         <label th:for="item">Size</label>
-        <input required="required" class="form-control" th:field="*{size}" />
+        <input class="form-control" th:field="*{size}" />
         <span th:errors="*{size}" class="error"></span>
     </div>
     <div class="form-group">
         <label th:for="other">Notes</label>
         <input class="form-control" th:field="*{other}" />
-        <span th:errors="*{other}" class="error"></span>
+        <span  th:errors="*{other}" class="error"></span>
     </div>
+    <p class="error" th:text="${error}"></p>
     <input type="submit" value="Add Item" />
+
 </form>
 
 </body>

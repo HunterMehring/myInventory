@@ -33,9 +33,6 @@ public class itemController {
 
     @RequestMapping(value = "")
     public String index(Model model) {
-        // then sort by category(done), then size
-        // change names of in inventory and out of inventory
-
 
         ArrayList<Item> inItems = new ArrayList<>();
         ArrayList<Item> outItems = new ArrayList<>();
@@ -61,7 +58,6 @@ public class itemController {
         return "item/index";
     }
 
-    //make a dropdown of enums
     @RequestMapping(value = "add")
     public String displayAdditem(Model model) {
         model.addAttribute("title", "Add Item");
@@ -69,8 +65,7 @@ public class itemController {
         model.addAttribute("categories", categoryDao.findAll());
         return "item/add";
     }
-    //make it so that errors actually pass correctly and that if you enter a item with the same
-    // category and number it gives you an error
+
     @RequestMapping(value = "add", method = RequestMethod.POST)
     public String processAddItem(Model model,
                                     @ModelAttribute @Valid Item item,
@@ -79,13 +74,25 @@ public class itemController {
         if(errors.hasErrors()) {
             model.addAttribute("title", "Add Item");
             model.addAttribute("categories", categoryDao.findAll());
+            model.addAttribute("error", "");
             return "/item/add";
         }
 
-        //add functionality to add multiple items
 
         Category cat = categoryDao.findOne(categoryId);
         Item newItem = new Item(cat, item.getNumber(), item.getSize().toUpperCase(), item.getOther());
+
+        for (Item aItem : itemDao.findAll()){
+            if (aItem.getCategory().getName().equals(newItem.getCategory().getName())){
+                if(aItem.getNumber().equals(newItem.getNumber())){
+                    model.addAttribute("title", "Add Item");
+                    model.addAttribute("categories", categoryDao.findAll());
+                    model.addAttribute("error", "an item of that category and number already exists");
+                    return "/item/add";
+                }
+            }
+        }
+
         itemDao.save(newItem);
         Changes newChange = new Changes("inventory", newItem.getCategory().getName(),
                 "added", newItem.getNumber());
@@ -116,7 +123,6 @@ public class itemController {
         return "item/edit";
     }
 
-    //made it so that you can only edit the comments on an item
     @RequestMapping(value = "edit", method = RequestMethod.POST)
     public String processEditForm(@RequestParam int id,
                                   @ModelAttribute @Valid Item newItem,
@@ -132,7 +138,7 @@ public class itemController {
         aItem.setOther(newItem.getOther());
         itemDao.save(aItem);
         Changes newChange = new Changes("inventory", aItem.getCategory().getName(),
-                "edited", aItem.getNumber());
+                "comment edited", aItem.getNumber());
         newChange.setMyDate(newChange.getMyDate());
         changeDao.save(newChange);
         return "redirect:";

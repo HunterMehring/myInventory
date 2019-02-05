@@ -13,11 +13,11 @@
 <table class="table">
     <tr>
         <th>Player</th>
-        <th>Remove Complete</th>
+        <th>Remove</th>
     </tr>
     <tr th:each="player : ${completedPlayers}">
         <td th:text="${player.name}"></td>
-        <td><a th:href="@{'/tasks/remove-task-player/' + ${player.id} + '/' + ${task.id}}">remove complete</a></td>
+        <td><a th:href="@{'/tasks/remove-task-player/' + ${player.id} + '/' + ${task.id}}">remove</a></td>
     </tr>
 </table>
 

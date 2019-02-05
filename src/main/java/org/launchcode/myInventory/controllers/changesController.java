@@ -11,7 +11,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-/* BE ABLE TO SEARCH FOR A SPECIFIC ITEM AND GET A RESULT OF WHERE THAT ITEM HAS BEEN */
 
 @Controller
 @RequestMapping("/changes")

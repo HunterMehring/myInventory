@@ -10,11 +10,11 @@
 
 <h3 th:text="${item.category.name} + ' number: ' + ${item.number}"></h3>
 
-<h3 th:if="${player != null}" th:text="'Owner: ' + ${player.name}"></h3>
+<h3 th:if="${player != null}" th:text="'item owner: ' + ${player.name}"></h3>
 <h3 th:if="${player == null}">In Stock</h3>
 <br/>
 
-<h4>Changes</h4>
+<h3>Changes</h3>
 <table class="table">
     <tr>
         <th>Item</th>

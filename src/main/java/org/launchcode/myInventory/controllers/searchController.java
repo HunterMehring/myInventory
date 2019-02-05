@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.ArrayList;
+import java.util.Collections;
 
 @Controller
 @RequestMapping("search")
@@ -35,10 +36,9 @@ public class searchController {
     private CategoryDao categoryDao;
 
 
-    //make it so that you can only search for items with numbers
     @RequestMapping(value = "")
     public String index(Model model) {
-        model.addAttribute("title", "Search");
+        model.addAttribute("title", "Search Items");
         model.addAttribute("item", new Item());
         model.addAttribute("error", " ");
         model.addAttribute("categories",categoryDao.findAll());
@@ -79,10 +79,7 @@ public class searchController {
         model.addAttribute("categories",categoryDao.findAll());
         return "search/index";
 
-
     }
-
-
 
     @RequestMapping(value = "/view/{itemId}")
     public String searchView(Model model, @PathVariable int itemId) {
@@ -108,11 +105,11 @@ public class searchController {
                 }
             }
         }
+        Collections.reverse(changes);
         model.addAttribute("changes", changes);
         model.addAttribute("item", item);
         model.addAttribute("title", "Search Result");
 
         return "/search/view";
-
     }
 }

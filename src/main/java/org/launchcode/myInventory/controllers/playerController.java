@@ -140,7 +140,7 @@ public class playerController {
         playerDao.save(thePlayer);
 
         Changes newChange = new Changes("players", thePlayer.getName(), theItem.getCategory().getName(),
-                "removed", theItem.getNumber());
+                "gave back", theItem.getNumber());
         newChange.setMyDate(newChange.getMyDate());
         changeDao.save(newChange);
 
@@ -157,7 +157,7 @@ public class playerController {
         playerDao.save(thePlayer);
 
         Changes newChange = new Changes("players", thePlayer.getName(), theItem.getCategory().getName(),
-                "added", theItem.getNumber());
+                "given", theItem.getNumber());
         newChange.setMyDate(newChange.getMyDate());
         changeDao.save(newChange);
 
