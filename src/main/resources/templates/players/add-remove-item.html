@@ -5,8 +5,9 @@
 <h1>give item to player: <a th:href="@{'/players/view/' + ${form.player.id}}" th:text="${form.player.name}">Default Title</a></h1>
 <nav th:replace="fragments :: navigation"></nav>
 
+<div class="box1">
 <h4>Items available</h4>
-    <table class="table" th:object="${form}">
+    <table style="width: 700px; text-align:left; margin-left: -200px;" class="table" th:object="${form}">
         <tr>
             <th>Category</th>
             <th>Number</th>
@@ -22,11 +23,12 @@
             <td><a class="btn btn-secondary" th:href="@{'/players/add-item-to-player/' + *{player.id} + '/' + ${item.id}}">give item</a></td>
         </tr>
     </table>
+</div>
 
 <br />
 
+<div class="box2">
 <h4>Items in possession</h4>
-
 <table class="table">
     <tr>
         <th>Category</th>
@@ -43,6 +45,7 @@
         <td><a class="btn btn-secondary" th:href="@{'/players/remove-item-from-player/' + ${form.player.id} + '/' + ${item.id}}">take back item</a></td>
     </tr>
 </table>
+</div>
 
 </body>
 </html>

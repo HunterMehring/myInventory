@@ -2,8 +2,11 @@ package org.launchcode.myInventory.models;
 
 import org.launchcode.myInventory.models.data.TaskDao;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 
 import javax.persistence.*;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.ArrayList;
@@ -21,6 +24,8 @@ public class Player implements Comparable<Player> {
     private String name;
 
     @NotNull(message = "player must have a number")
+    @Min(0)
+    @Max(100)
     private Integer number;
 
     private String grade;
@@ -35,11 +40,23 @@ public class Player implements Comparable<Player> {
     @ManyToMany
     private List<Task> tasks = new ArrayList<>();
 
+    private Long userId;
+
     public Player(){}
 
-    public Player(String name, Integer number, String grade) {
+    public Player(String name, Integer number, String grade, long userId) {
         this.name = name;
         this.number = number;
+        this.grade = grade;
+        this.userId = userId;
+    }
+
+    public Player(String name, Integer number, String grade, String safe, long userId) {
+        this.name = name;
+        this.number = number;
+        this.grade = grade;
+        this.safe = safe;
+        this.userId = userId;
     }
 
     //simply adds a given item to the list
@@ -101,6 +118,14 @@ public class Player implements Comparable<Player> {
 
     public List<Task> getTasks() {
         return tasks;
+    }
+
+    public Long getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Long userId) {
+        this.userId = userId;
     }
 
     @Override

@@ -17,7 +17,8 @@
     </tr>
     <tr th:each="player : ${completedPlayers}">
         <td th:text="${player.name}"></td>
-        <td><a th:href="@{'/tasks/remove-task-player/' + ${player.id} + '/' + ${task.id}}">remove</a></td>
+        <td><a class="btn btn-secondary" th:href="@{'/tasks/remove-task-player/' + ${player.id} + '/' + ${task.id}}">
+            remove</a></td>
     </tr>
 </table>
 
@@ -29,7 +30,8 @@
     </tr>
     <tr th:each="player : ${incompletePlayers}">
         <td th:text="${player.name}"></td>
-        <td><a th:href="@{'/tasks/add-task-player/' + ${player.id} + '/' + ${task.id}}">complete</a></td> <!--make this work next-->
+        <td><a class="btn btn-secondary" th:href="@{'/tasks/add-task-player/' + ${player.id} + '/' + ${task.id}}">
+            complete</a></td> <!--make this work next-->
     </tr>
 </table>
 

@@ -22,7 +22,7 @@
         <td th:text="${player.number}"></td>
         <td th:text="${player.grade}"></td>
         <td th:text="${player.safe}"></td>
-        <td><a th:href="@{'/players/remove-player/' + ${player.id}}">Remove</a></td>
+        <td><a class="btn btn-secondary" th:href="@{'/players/remove-player/' + ${player.id}}">Remove</a></td>
 
     </tr>
 </table>

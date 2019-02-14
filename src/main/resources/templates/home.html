@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="myFontClass" lang="en" xmlns:th="http://www.thymeleaf.org/">
 <head th:replace="fragments :: head"></head>
-<body id="background" class="container body-content">
+<body class="container body-content">
 <h1 th:text="${title}" style="text-align:center;
                                font-size: 56px;">Default Title</h1>
 <!--<p th:if="${user}" th:text="'logged in as ' + ${user.name}"></p>-->
@@ -11,6 +11,11 @@
     <a class="btn btn-secondary otherNav" href="/login/">login</a>
     <a class="btn btn-secondary otherNav" href="/register">register</a>
     <a class="btn btn-secondary otherNav" href="/logout">logout</a>
+
+    <span th:if="${condition} == 1">
+    <a class="btn btn-secondary otherNav" href="/home/starter">add starting data*</a>
+        <!--make this only show up when someone is logged in and they have no data-->
+    </span>
 </nav>
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -34,15 +39,11 @@
         </ul>
     </div>
 </nav>
-<div id="instructionGap"></div>
 
+<span style="font-size: 12px;" th:if="${condition} == 1">*Inserts generic data to see how the website works.</span>
+
+<div id="instructionGap"></div>
 <h3 style="text-align:center">Instructions</h3>
-<p style="text-align:center;">Welcome! Thank you so much for using my my app. I hope you like it!</p>
-<h4>Login</h4>
-<p>Make sure you create an account and log in, once you’ve done that there is an option to add starting data. If you
-    are just poking around I recommend you use this feature. This gives you predetermined categories, items, players,
-    and tasks so you don’t have to spend a while adding those yourself.
-</p>
 <h4>Inventory</h4>
 <p>This is where you can see all of the items that you have created. To create an item you first need to create a
     category. Think of Categories as “types of items”.  If you wanted to add an XL jacket number 13 you would first need

@@ -1,10 +1,13 @@
 package org.launchcode.myInventory.controllers;
 
-import org.launchcode.myInventory.models.Changes;
+import org.launchcode.myInventory.models.*;
 import org.launchcode.myInventory.models.data.ChangeDao;
 import org.springframework.beans.factory.annotation.Autowired;
+
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.ArrayList;
@@ -18,11 +21,12 @@ public class changesController {
     @Autowired
     private ChangeDao changeDao;
 
-    @RequestMapping("")
-    public String index(Model model) {
+    @GetMapping
+    public String index(Model model, Authentication authentication) {
 
         List<Changes> changes = new ArrayList<>();
-        for (Changes change : changeDao.findAll()){
+        for (Changes change : changeDao.findAllByUserId(((User)authentication.getPrincipal()).getId())){
+            //categoryDao.findAllByUserId(((User)authentication.getPrincipal()).getId())
             changes.add(change);
         }
         Collections.reverse(changes);// all in reverse order to have most current changes on top
@@ -33,11 +37,11 @@ public class changesController {
     }
 
     @RequestMapping("/categories")
-    public String categoryChanges(Model model) {
+    public String categoryChanges(Model model, Authentication authentication) {
 
         ArrayList<Changes> changes = new ArrayList<>();
 
-        for (Changes change: changeDao.findAll()) {
+        for (Changes change: changeDao.findAllByUserId(((User)authentication.getPrincipal()).getId())) {
             if (change.getType().equals("category")) {
                 changes.add(change);
             }
@@ -49,12 +53,12 @@ public class changesController {
     }
 
     @RequestMapping("/items")
-    public String itemChanges(Model model) {
+    public String itemChanges(Model model, Authentication authentication) {
 
         ArrayList<Changes> changes = new ArrayList<>();
 
-        for (Changes change: changeDao.findAll()) {
-            if (change.getType().equals("inventory")) {
+        for (Changes change: changeDao.findAllByUserId(((User)authentication.getPrincipal()).getId())) {
+            if (change.getType().equals("item")) {
                 changes.add(change);
             }
         }
@@ -65,11 +69,11 @@ public class changesController {
     }
 
     @RequestMapping("/player-items")
-    public String playerItemChanges(Model model) {
+    public String playerItemChanges(Model model, Authentication authentication) {
 
         ArrayList<Changes> changes = new ArrayList<>();
 
-        for (Changes change: changeDao.findAll()) {
+        for (Changes change: changeDao.findAllByUserId(((User)authentication.getPrincipal()).getId())) {
             if (change.getType().equals("players") && !change.getItem().equals("")){
                 changes.add(change);
             }
@@ -81,11 +85,11 @@ public class changesController {
     }
 
     @RequestMapping("/players")
-    public String playerChanges(Model model) {
+    public String playerChanges(Model model, Authentication authentication) {
 
         ArrayList<Changes> changes = new ArrayList<>();
 
-        for (Changes change: changeDao.findAll()) {
+        for (Changes change: changeDao.findAllByUserId(((User)authentication.getPrincipal()).getId())) {
             if (change.getType().equals("players") && change.getItem().equals("")) {
                 changes.add(change);
             }
@@ -98,11 +102,11 @@ public class changesController {
 
     // add one for tasks
     @RequestMapping("/tasks")
-    public String taskChanges(Model model) {
+    public String taskChanges(Model model, Authentication authentication) {
 
         ArrayList<Changes> changes = new ArrayList<>();
 
-        for (Changes change : changeDao.findAll()) {
+        for (Changes change : changeDao.findAllByUserId(((User)authentication.getPrincipal()).getId())) {
             if(change.getType().equals("task")){
                 changes.add(change);
             }

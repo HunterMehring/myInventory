@@ -1,13 +1,12 @@
 package org.launchcode.myInventory.controllers;
 
-import org.launchcode.myInventory.models.Category;
-import org.launchcode.myInventory.models.Changes;
-import org.launchcode.myInventory.models.Item;
-import org.launchcode.myInventory.models.Player;
+import org.launchcode.myInventory.models.*;
 import org.launchcode.myInventory.models.data.CategoryDao;
 import org.launchcode.myInventory.models.data.ChangeDao;
 import org.launchcode.myInventory.models.data.ItemDao;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
@@ -31,9 +30,10 @@ public class categoryController {
     private ChangeDao changeDao;
 
     @RequestMapping(value = "")
-    public String index(Model model) {
+    public String index(Model model, Authentication authentication) {
 
-        model.addAttribute("categories", categoryDao.findAll());
+        model.addAttribute("categories",
+                categoryDao.findAllByUserId(((User)authentication.getPrincipal()).getId()));
         model.addAttribute("title", "Categories");
         return "category/index";
     }
@@ -48,7 +48,7 @@ public class categoryController {
     }
 
     @RequestMapping(value = "add", method = RequestMethod.POST)
-    public String add(Model model, @ModelAttribute @Valid Category category, Errors errors) {
+    public String add(Model model, @ModelAttribute @Valid Category category, Errors errors, Authentication authentication) {
         if(errors.hasErrors()) {
             model.addAttribute("category", category);
             model.addAttribute("title", "Add Category");
@@ -58,7 +58,7 @@ public class categoryController {
         }
 
         String categoryName = category.getName().toLowerCase();
-        for (Category aCategory : categoryDao.findAll()) {
+        for (Category aCategory : categoryDao.findAllByUserId(((User)authentication.getPrincipal()).getId())) {
             if (aCategory.getName().equals(categoryName)) {
                 model.addAttribute("category", category);
                 model.addAttribute("title", "Add Category");
@@ -68,26 +68,30 @@ public class categoryController {
             }
         }
 
-        category.setName(categoryName);
+        // use constructor here
+        category.setName(categoryName.toLowerCase());
+        category.setUserId(((User)authentication.getPrincipal()).getId());
         categoryDao.save(category);
         Changes newChange = new Changes("category", category.getName(), "added");
         newChange.setMyDate(newChange.getMyDate()); // might not be necessary
+        newChange.setUserId(((User)authentication.getPrincipal()).getId());
         //to be able to make longer strings
         changeDao.save(newChange);
         return "redirect:/item/";
     }
     //so the user doesn't accidentally remove a category (adds an extra click)
     @RequestMapping(value = "remove")
-    public String displayRemove(Model model) {
-        model.addAttribute("categories", categoryDao.findAll());
+    public String displayRemove(Model model, Authentication authentication) {
+        model.addAttribute("categories",
+                categoryDao.findAllByUserId(((User)authentication.getPrincipal()).getId()));
         model.addAttribute("title", "Remove Categories");
 
         return "category/remove";
     }
 
     @RequestMapping(value = "remove-category/{categoryId}")
-    public String removeCategory(@PathVariable int categoryId) {
-        for (Item item : itemDao.findAll()) {
+    public String removeCategory(@PathVariable int categoryId, Authentication authentication) {
+        for (Item item : itemDao.findAllByUserId(((User)authentication.getPrincipal()).getId())) {
             for (Player player : item.getPlayers()){
                 player.removeItem(item);
             }

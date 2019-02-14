@@ -26,6 +26,8 @@ public class Changes {
 
     private Date myDate;
 
+    private Long userId;
+
     public Changes() {
 
     }
@@ -56,6 +58,34 @@ public class Changes {
         this.status = status;
         this.number = number;
         this.myDate = new Date();
+    }
+
+    public Changes(String type, String item, String status, Long userId) {
+        this.type = type;
+        this.item = item;
+        this.status = status;
+        this.myDate = new Date();
+        this.userId = userId;
+    }
+
+
+    public Changes(String type, String item, String status, Integer number, Long userId) {
+        this.type = type;
+        this.item = item;
+        this.status = status;
+        this.number = number;
+        this.userId = userId;
+        this.myDate = new Date();
+    }
+
+    public Changes(String type, String name, String item, String status, Integer number, Long userId) {
+        this.type = type;
+        this.name = name;
+        this.item = item;
+        this.status = status;
+        this.number = number;
+        this.myDate = new Date();
+        this.userId = userId;
     }
 
     public int getId() {
@@ -110,5 +140,11 @@ public class Changes {
         this.myDate = myDate;
     }
 
+    public Long getUserId() {
+        return userId;
+    }
 
+    public void setUserId(Long userId) {
+        this.userId = userId;
+    }
 }

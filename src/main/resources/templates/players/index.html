@@ -6,9 +6,9 @@
 
 <nav th:replace="fragments :: navigation"></nav>
 
-<div id="otherNav">
-<a class="btn btn-secondary otherNav" th:href="@{/players/add/}">add player</a>
-<a class="btn btn-secondary otherNav" th:href="@{/players/remove/}">remove player</a>
+<div class="otherNav">
+<a class="btn btn-secondary" th:href="@{/players/add/}">add player</a>
+<a class="btn btn-secondary" th:href="@{/players/remove/}">remove player</a>
 </div>
 <!-- This loops over the menus, and for each one gives a link to that menu view.
   the url is showing us the view with the menu id ex: menu/view/5-->
@@ -29,6 +29,8 @@
         <!--ask chris if he wants to be able to see items on this page -->
     </tr>
 </table>
+
+<p th:if="${#lists.isEmpty(players)}">no players =(</p>
 
 </body>
 </html>

@@ -10,7 +10,7 @@ import java.util.List;
 @Entity//makes sure that this class will be mapped to a relational database table(persistent)
 public class Category {
 
-    @Id //JPA annotations
+    @Id
     @GeneratedValue
     private int id;
 
@@ -23,9 +23,15 @@ public class Category {
     @JoinColumn(name = "category_id")//used to determine which garment belongs to a given category.
     private List<Item> items = new ArrayList<>();
 
+    private Long userId;
+
     public Category() {}
 
-    public Category(String name) { this.name = name;}
+    public Category(long userId) {
+        this.userId = userId;
+    }
+
+    public Category(String name, Long userId) {this.name = name; this.userId = userId;}
 
     public int getId() {
         return id;
@@ -45,4 +51,11 @@ public class Category {
         return Character.toUpperCase(line.charAt(0)) + line.substring(1);
     }
 
+    public Long getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Long userId) {
+        this.userId = userId;
+    }
 }

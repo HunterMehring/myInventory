@@ -9,6 +9,9 @@
 <nav th:replace="fragments :: navigation"></nav>
 
 <h3 th:text="${item.category.name} + ' number: ' + ${item.number}"></h3>
+<h3 th:text="'size: ' + ${item.size}"></h3>
+<h3 th:if="${#strings.length(item.other)} > 0" th:text="'comment: ' + ${item.other}"></h3>
+
 
 <h3 th:if="${player != null}" th:text="'item owner: ' + ${player.name}"></h3>
 <h3 th:if="${player == null}">In Stock</h3>

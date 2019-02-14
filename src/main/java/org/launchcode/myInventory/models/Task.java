@@ -16,12 +16,15 @@ public class Task {
     @Size(min = 3, max = 15)
     private String name;
 
+    private Long userId;
+
     @ManyToMany(mappedBy = "tasks")
     private List<Player> players;
 
     public Task() {}
 
-    public Task(String name) { this.name = name;}
+    public Task(String name, long userId) { this.name = name; this.userId = userId;}
+
 
     public int getId() {
         return id;
@@ -41,5 +44,13 @@ public class Task {
 
     public List<Player> getPlayers() {
         return players;
+    }
+
+    public Long getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Long userId) {
+        this.userId = userId;
     }
 }

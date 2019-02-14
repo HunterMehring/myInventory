@@ -1,14 +1,14 @@
 package org.launchcode.myInventory.models.data;
 
-import org.launchcode.myInventory.models.Changes;
+import org.launchcode.myInventory.models.User;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
+import java.util.Optional;
 
 @Repository
 @Transactional
-public interface ChangeDao extends CrudRepository<Changes, Integer> {
-    List<Changes> findAllByUserId(Long user_id);
+public interface UserDao extends CrudRepository<User, Integer> {
+    Optional<User> findByName(String username);
 }

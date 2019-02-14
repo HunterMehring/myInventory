@@ -1,12 +1,10 @@
 package org.launchcode.myInventory.controllers;
 
-import org.launchcode.myInventory.models.Category;
-import org.launchcode.myInventory.models.Changes;
-import org.launchcode.myInventory.models.Item;
-import org.launchcode.myInventory.models.Player;
+import org.launchcode.myInventory.models.*;
 import org.launchcode.myInventory.models.data.*;
 import org.launchcode.myInventory.models.forms.SearchItemForm;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
@@ -37,36 +35,42 @@ public class searchController {
 
 
     @RequestMapping(value = "")
-    public String index(Model model) {
+    public String index(Model model, Authentication authentication) {
         model.addAttribute("title", "Search Items");
         model.addAttribute("item", new Item());
         model.addAttribute("error", " ");
-        model.addAttribute("categories",categoryDao.findAll());
+        model.addAttribute("categories",
+                categoryDao.findAllByUserId(((User)authentication.getPrincipal()).getId()));
 
         return "search/index";
     }
 
     // there is a null somewhere
     @RequestMapping(value = "", method = RequestMethod.POST)
-    public String processSearch(@ModelAttribute @Valid SearchItemForm searchItemForm, Errors errors, Model model, @RequestParam int categoryId) {
+    public String processSearch(@ModelAttribute @Valid SearchItemForm searchItemForm,
+                                Errors errors,
+                                Model model,
+                                @RequestParam int categoryId,
+                                Authentication authentication) {
 
         if (errors.hasErrors()){
             model.addAttribute("title", "Search");
-            model.addAttribute("item", new Item());
+            model.addAttribute("item", searchItemForm);
             model.addAttribute("error", "");
-            model.addAttribute("categories",categoryDao.findAll());
+            model.addAttribute("categories",
+                    categoryDao.findAllByUserId(((User)authentication.getPrincipal()).getId()));
             return "redirect:/search/index";
         }
 
         Category cat = categoryDao.findOne(categoryId);
         SearchItemForm newSearchItemForm = new SearchItemForm(searchItemForm.getNumber(), searchItemForm.getSize());
 
-        for (Item aItem : itemDao.findAll()){
+        for (Item aItem : itemDao.findAllByUserId(((User)authentication.getPrincipal()).getId())){
             if(aItem.getCategory().getName() != null && cat.getName() != null) {
                 if (aItem.getCategory().getName().equals(cat.getName())) {
                     if(aItem.getNumber() != null && newSearchItemForm.getNumber() != null) {
                         if (aItem.getNumber().equals(newSearchItemForm.getNumber())) {
-                            return "redirect:/search/view/" + aItem.getId(); // something is wrong with this line
+                            return "redirect:/search/view/" + aItem.getId(); //something is wrong with this line
                         }
                     }
                 }
@@ -75,18 +79,19 @@ public class searchController {
 
         model.addAttribute("error", "sorry, we could'nt find that item or it does not exist");
         model.addAttribute("title", "Search");
-        model.addAttribute("item", new Item());
-        model.addAttribute("categories",categoryDao.findAll());
+        model.addAttribute("item", searchItemForm);
+        model.addAttribute("categories",
+                categoryDao.findAllByUserId(((User)authentication.getPrincipal()).getId()));
         return "search/index";
 
     }
 
     @RequestMapping(value = "/view/{itemId}")
-    public String searchView(Model model, @PathVariable int itemId) {
+    public String searchView(Model model, @PathVariable int itemId, Authentication authentication) {
         Item item = itemDao.findOne(itemId);
         ArrayList<Changes> changes = new ArrayList<>();
 
-        for (Player player : playerDao.findAll()) {
+        for (Player player : playerDao.findAllByUserId(((User)authentication.getPrincipal()).getId())) {
             for (Item item1 : player.getItems()) {
                 if (item1.getId() == item.getId()) {
                     model.addAttribute("player", player);
@@ -94,7 +99,7 @@ public class searchController {
             }
         }
 
-        for (Changes change : changeDao.findAll()) {
+        for (Changes change : changeDao.findAllByUserId(((User)authentication.getPrincipal()).getId())) {
             if (change.getType() != null) {
                 if (change.getItem().equals(item.getCategory().getName())) {
                     if(change.getNumber() != null ) {

@@ -6,7 +6,9 @@
 <h1 th:text="${title} + ': Current Items'">Default Title</h1>
 <nav th:replace="fragments :: navigation"></nav>
 
-<a class="btn btn-secondary" th:href="'/players/add-remove-item/' + ${player.id}" th:text="'give items to ' + ${player.name}"></a>
+<a class="btn btn-secondary" th:href="'/players/add-remove-item/' + ${player.id}"
+   th:text="'give items to ' + ${player.name}"></a>
+<br/>
 
 <table class="table">
 
@@ -24,7 +26,7 @@
         <td th:text="${item.number}"></td>
         <td th:text="${item.size}"></td>
         <td th:text="${item.other}"></td>
-        <td><a th:href="@{'/item/edit/' + ${item.id}}">edit</a></td>
+        <td><a class="btn btn-secondary" th:href="@{'/item/edit/' + ${item.id}}">edit</a></td>
         <td><a class="btn btn-secondary" th:href="@{'/players/remove-item-from-player/' + *{player.id} + '/' + ${item.id}}">give back</a></td>
     </tr>
 
