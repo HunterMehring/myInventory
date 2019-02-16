@@ -1,18 +1,13 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org/">
 <head th:replace="fragments :: head"></head>
-
 <body class="container body-content">
-
 <h1 th:text="${title}">Default Title</h1>
-
 <nav th:replace="fragments :: navigation"></nav>
-
 <div class="otherNav">
 <a class="btn btn-secondary" href="/tasks/add">add task</a>
     <a class="btn btn-secondary" href="/tasks/remove">remove task</a>
 </div>
-
 <table class="table">
     <tr>
         <th>Task</th>
@@ -20,9 +15,7 @@
     <tr th:each="task : ${tasks}">
         <td><a th:href="@{'/tasks/add-remove-players/' + ${task.id}}" th:text="${task.name}"></a></td>
     </tr>
-
 </table>
 <p th:if="${#lists.isEmpty(tasks)}">no tasks =(</p>
-
 </body>
 </html>

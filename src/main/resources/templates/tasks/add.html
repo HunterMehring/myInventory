@@ -3,21 +3,15 @@
 <head th:replace="fragments :: head"></head>
 <body class="container body-content">
 <h1 th:text="${title}">Default Title</h1>
-
 <nav th:replace="fragments :: navigation"></nav>
-
 <p th:text="${other}">default</p>
-
 <form method="post" style="max-width:600px;" th:object="${task}">
-
     <div class="form-group">
         <label th:for="task">Task: </label>
         <input required="required" class="form-control" th:field="*{name}" />
         <span th:errors="*{name}" class="error"></span>
     </div>
-
     <input type="submit" value="Add Task" />
 </form>
-
 </body>
 </html>
