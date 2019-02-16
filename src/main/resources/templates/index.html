@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="myFontClass" lang="en" xmlns:th="http://www.thymeleaf.org/">
 <head th:replace="fragments :: head"></head>
-<body id="background" class="container body-content">
+<body id="background" class="container body-content bottomSpace">
 <h1 th:text="${title}" style="text-align:center;
                                font-size: 56px;">Default Title</h1>
 <!--<p th:if="${user}" th:text="'logged in as ' + ${user.name}"></p>-->
@@ -45,10 +45,10 @@
 </p>
 <h4>Inventory</h4>
 <p>This is where you can see all of the items that you have created. To create an item you first need to create a
-    category. Think of Categories as “types of items”.  If you wanted to add an XL jacket number 13 you would first need
-    to create the category “jacket”. Once you create a category you will be able to select it from a dropdown when you
-    are creating items. </p>
-<p>On this page you can create, remove, and edit your items. Items are sorted by category and then size. Items are
+    category.  You can create a category once you are on the inventory page. Think of Categories as “types of items”.
+    If you wanted to add an XL jacket number 13 you would first need to create the category “jacket”. Once you create
+    a category you will be able to select it from a dropdown when you are creating items. </p>
+<p>On the items page you can create, remove, and edit your items. Items are sorted by category and then size. Items are
     separated by whether they are in storage or out of storage. Once you give an item to a player it will go into out
     of storage. Items can only be removed if they are in storage. </p>
 <h4>Players </h4>
@@ -66,7 +66,6 @@
 <p>	This is where you can see every change that has taken place in the app. Every time you add a player, remove a
     category, give a task to a player, or anything else within the app, we make a record of it. You can click each of
     the categories to see which type of change you would like to see. </p>
-<br style="padding-bottom: 200px;"/>
 
 </body>
 </html>

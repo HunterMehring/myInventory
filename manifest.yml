@@ -1,0 +1,6 @@
+applications:
+- name: myInventory
+  buildpack: https://github.com/cloudfoundry/java-buildpack
+  path: build\libs\myInventory-0.0.1-SNAPSHOT.jar
+  services:
+  - myInventory-db

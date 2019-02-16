@@ -14,7 +14,78 @@
 <a  class="btn btn-secondary" href="/category/remove">remove Category</a>
 </div>
 
-<p th:if="${#lists.isEmpty(items)}">you have no items, but you can make some by going
+<p class="error" th:if="${#lists.isEmpty(items)}">you have no items, but you can make some by going
+    to the homepage and clicking "add starting data"</p>
+
+<div class="table box3">
+<h4>In Storage</h4>
+<table>
+    <tr>
+        <th>Category</th>
+        <th>Number</th>
+        <th>Size</th>
+        <th>Comments</th>
+        <th>Edit</th>
+        <th>Remove</th>
+    </tr>
+    <tr th:each="item : ${inItems}">
+        <td th:text="${item.category.name}"></td>
+        <td>
+            <span th:if="${item.number != 0}" th:text="${item.number}"> </span>
+        </td>
+        <td th:text="${item.size}"></td>
+        <td th:text="${item.other}"></td>
+        <td><a class="btn btn-secondary" th:href="@{'/item/edit/' + ${item.id}}">edit</a></td>
+        <td><a class="btn btn-secondary" th:href="@{'/item/remove-item/' + ${item.id}}">remove</a></td>
+    </tr>
+
+</table>
+</div>
+<p th:if="${#lists.isEmpty(inItems)}">no items in storage</p>
+
+<div class="table box4">
+<h4>Out Of Storage</h4>
+<table>
+    <tr>
+        <th>Category</th>
+        <th>Number</th>
+        <th>Size</th>
+        <th>Comments</th>
+        <th>Edit</th>
+    </tr>
+    <tr th:each="item : ${outItems}">
+        <td th:text="${item.category.name}"></td>
+        <td>
+            <span th:if="${item.number != 0}" th:text="${item.number}"> </span>
+        </td>
+        <td th:text="${item.size}"></td>
+        <td th:text="${item.other}"></td>
+        <td><a class="btn btn-secondary" th:href="@{'/item/edit/' + ${item.id}}">edit</a></td>
+    </tr>
+
+</table>
+
+<p th:if="${#lists.isEmpty(outItems)}">no items out of storage</p>
+</div>
+</body>
+</html>
+<!--<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments :: head"></head>
+
+<body class="container body-content">
+
+<h1 th:text="${title}">Default Title</h1>
+
+<nav th:replace="fragments :: navigation"></nav>
+
+<div class="otherNav">
+<a class="btn btn-secondary" href="/item/add">add item</a>
+<a class="btn btn-secondary" href="/category/add">add category</a>
+<a  class="btn btn-secondary" href="/category/remove">remove Category</a>
+</div>
+
+<p class="error" th:if="${#lists.isEmpty(items)}">you have no items, but you can make some by going
     to the homepage and clicking "add starting data"</p>
 
 <h4>In Storage</h4>
@@ -65,4 +136,4 @@
 <p th:if="${#lists.isEmpty(outItems)}">no items out of storage</p>
 
 </body>
-</html>
+</html>-->

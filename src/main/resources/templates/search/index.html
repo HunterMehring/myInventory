@@ -3,9 +3,8 @@
 <head th:replace="fragments :: head"></head>
 <body class="container body-content">
 <h1 th:text="${title}">Default Title</h1>
-
 <nav th:replace="fragments :: navigation"></nav>
-
+<p class="error" th:if="${#lists.isEmpty(categories)}">you can't search for items if there are none silly</p>
 <form method="post" style="max-width:600px;" th:object="${item}">
     <div class="form-group">
         <label th:for="category">Category</label>
@@ -14,7 +13,6 @@
                     th:text="${category.name}"
                     th:value="${category.id}"></option>
         </select>
-        <!-- if there are no categories say no categories-->
     </div>
     <div class="form-group">
         <label th:for="item">Number</label>
