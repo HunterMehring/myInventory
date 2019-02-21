@@ -1,0 +1,23 @@
+# myInventory
+
+MyInventory is a web application designed for coaches to keep track of their items in a much simpler and sophisticated way. Using this application you can count on losing less stuff and spending less than half the time if you were using a spreadsheet. 
+
+Categories
+We start with categories because that is the first step in creating your first item. Each "category" is really a specific type of item that you would like in your inventory(ex: jacket, fleece, jersey ect.). Creating a category is quite easy. Simply go to the items navigation link at the top of each page and click "add category". Now you will be able to create an item of that type. To remove a category simply click "remove category" which is next to the add category button. This should take you to a list of the categories which you have already created and a button should appear next to each one to remove it. Note that if you remove a category, all items of that category will also be removed. So make sure you have no more use of that category before you remove it. 
+
+Inventory
+Next we will go over creating and removing items. To add an item click on the "add item" button at the top of the inventory page. This will take you to a form to fill out the necessary elements to create your item. Notice how each category is available to you through a dropdown menu. Comments are there to add any additional information you might need about each item. Once you click "add item" you should see it immediately in you inventory. From there you can edit the comment, or remove the item. The page is separated by items that are in storage and out of storage. This leads us to our next function of the app which is creating players and giving/taking items from them.
+
+Players
+Here we will learn everything you need to know about your players. To add a player click on “players” and then “add player”. From there you will need to give a name, number, and grade. You can also remove a player by clicking the “remove player” button next to “add player”(Note: if you remove a player all items in possession of that player will be moved back into the inventory). To add and remove items from a player it is easiest to click the “add/remove items” button. This will take you to a list of items that are available. Once you give an item to a player by clicking the “give item” button next to the item you would like to give, the item will drop down to the bottom of the page and be listed under “items in possession”. Also from the main page you can click on the player’s name and it will give you a brief snapshot of that player and their items. 
+
+Search
+One of the most convenient features of the app is the ability to search for items. Simply click “search” in the main navigation bar and then select a category and a number and by using a highly complicated algorithm, the app finds out useful information about the item. 
+
+Tasks
+A simple, but hopefully helpful feature of the app is the ability to keep track of tasks for your players. After you click “tasks” you can click “add task” to add any task that you would like. After you have done this click on the task that you have just created and you will see two separate headings, one that will list those that have completed the task, and another that currently lists all the players that have not completed the task. There is a button next to each player depending on if they have completed the task or not. If they have not yet completed the task, click on the “complete” button to complete the task. If you click on “remove” button to remove them from the list of players that have completed the task. 
+
+Changes
+Last but not least we have arguably the most useful part of the app; the ability to keep track of every change that happens. This is designed to make sure that you never lose track of a single item again. The default page you land on is a list of all changes. However, this can be a bit confusing. If you click on the navigation link just above the table, you can see that you can be shown the changes that have been made to each specific part of the application. For example, if I was looking for a change that had been made when giving an item to a player, you can click the “player item” button and that will show you every time that an item has traded hands between the coaches and the players with a time stamp on it. 
+
+Thank you for reading this overview of the app. If you have made it this far, thanks for taking the time and checking out my app. It really means a lot to me and I am always open to feedback on how I can make this better and more useful :)
