@@ -1,6 +1,7 @@
 package org.launchcode.myInventory.models;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.Set;
 
 @Entity
@@ -12,8 +13,10 @@ public class User {
     @Column(name = "user_id")
     private Long id;
 
+    @NotNull
     @Column(name = "password")
     private String password;
+
 
     @Column(name = "name")
     private String name;
@@ -64,4 +67,5 @@ public class User {
     public void setRoles(Set<Role> roles) {
         this.roles = roles;
     }
+
 }

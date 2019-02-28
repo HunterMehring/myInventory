@@ -39,9 +39,8 @@
         <td><a class="btn btn-secondary" th:href="@{'/item/remove-item/' + ${item.id}}">remove</a></td>
     </tr>
 
-</table>
+</table><p th:if="${#lists.isEmpty(inItems)}">no items in storage</p>
 </div>
-<p th:if="${#lists.isEmpty(inItems)}">no items in storage</p>
 
 <div class="table box4">
 <h4 id="moveRight">Out Of Storage</h4>

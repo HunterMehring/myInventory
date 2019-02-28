@@ -1,6 +1,7 @@
 package org.launchcode.myInventory;
 
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+
 import static org.springframework.boot.SpringApplication.*;
 
 @SpringBootApplication

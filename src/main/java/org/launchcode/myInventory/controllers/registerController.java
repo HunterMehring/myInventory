@@ -45,25 +45,15 @@ public class registerController {
         }
         for(User aUser : userDao.findAll()){
             if (aUser.getName().equals(user.getName())) {
-                model.addAttribute("error", "username already exists");
+                model.addAttribute("error", "that name is already in use");
                 model.addAttribute("user", user);
                 model.addAttribute("title", "Register");
                 return "register/index";
             }
-           /* BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-            String hashedConfPassword = passwordEncoder.encode(confPassword);
-            String hashedPassword = passwordEncoder.encode(user.getPassword());
-            if(!hashedPassword.equals(hashedConfPassword)){
-                model.addAttribute("error2", "passwords do not match");
-                model.addAttribute("user", user);
-                model.addAttribute("title", "Register");
-                return "register/index";
-            }
-            */
         }
-
-        customUserDetailsService.registerNewUserAccount(user);
-
+        //add a confirm password
+        User newUser = new User(user.getName(), user.getPassword());
+        customUserDetailsService.registerNewUserAccount(newUser);
 
         return "redirect:/login/";
     }
